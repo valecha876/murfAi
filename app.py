@@ -4,9 +4,8 @@ import os
 import uuid
 from murf import Murf
 # from api_key import API_KEY
-import streamlit as st
 
-API_KEY = st.secrets["API_KEY"]
+API_KEY = os.getenv("API_KEY")
 
 # import time
 
@@ -214,4 +213,4 @@ def main(page: ft.Page):
 
 # Run the app
 if __name__ == "__main__":
-    ft.app(target=main, assets_dir=".")
+    ft.app(target=main, assets_dir=".", view=ft.WEB_BROWSER)
