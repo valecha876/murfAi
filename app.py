@@ -3,11 +3,13 @@ import requests
 import os
 import uuid
 from murf import Murf
-# from api_key import API_KEY
-
-API_KEY = os.getenv("API_KEY")
 
 # import time
+
+from dotenv import load_dotenv
+load_dotenv() 
+
+API_KEY = os.getenv("API_KEY")
 
 # Create API client
 client = Murf(api_key=API_KEY)
@@ -213,4 +215,4 @@ def main(page: ft.Page):
 
 # Run the app
 if __name__ == "__main__":
-    ft.app(target=main, assets_dir=".", view=ft.WEB_BROWSER)
+    ft.app(target=main, assets_dir=".")
