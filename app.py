@@ -152,10 +152,8 @@ def main(page: ft.Page):
         try:
             response = requests.get(audio_url, stream=True)
             if response.status_code == 200:
-                file_path = os.path.abspath("audio.mp3")
-
-                if os.path.exists(file_path):
-                    os.remove(file_path)
+                filename = f"audio_{uuid.uuid4().hex[:8]}.mp3"
+                file_path = os.path.abspath(filename)
 
                 with open(file_path, "wb") as file:
                     for chunk in response.iter_content(chunk_size=1024):
@@ -164,7 +162,7 @@ def main(page: ft.Page):
                 print("Audio Saved As:", file_path)
 
                 page.overlay.clear()
-                page.overlay.append(ft.Audio(src="audio.mp3", autoplay=True))
+                page.overlay.append(ft.Audio(src=filename, autoplay=True))
                 page.update()
             else:
                 print("Failed to download audio.")
